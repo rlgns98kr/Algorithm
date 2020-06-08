@@ -122,7 +122,7 @@ string solution(string s) {
 
 
 
-## x만틈 간격이 있는 n개의 숫자
+## x만큼 간격이 있는 n개의 숫자
 
 ### 코드
 
