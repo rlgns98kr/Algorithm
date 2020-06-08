@@ -223,3 +223,32 @@ string solution(string s, int n) {
 }
 ```
 
+
+
+## 2016년
+
+### 알고리즘
+
+1. 배열을 선언해서 반복문을 돌린다.
+
+
+
+### 코드
+
+```python
+def solution(a, b):
+    answer = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+    month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    s = 0
+    
+    if a == 1 :
+        s+=b-1
+    else :
+        s+=30
+        for i in range(2, a) :
+            s+=month[i-1];
+        s+=b;
+
+    return answer[(5+s)%7]
+```
+
