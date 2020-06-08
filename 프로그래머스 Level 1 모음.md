@@ -120,8 +120,6 @@ string solution(string s) {
 
 
 
-
-
 ## x만큼 간격이 있는 n개의 숫자
 
 ### 코드
@@ -190,4 +188,38 @@ int main(void) {
 ```
 
 
+
+## 시저 암호
+
+### 알고리즘
+
+1. s의 각 인덱스에 접근하여 공백, 대문자, 소문자를 구분한다.
+2. s가 소문자일 경우 stack overflow가 날 수 있으므로 비교한 후에 'z'를 넘어가면 26을 빼준 뒤 다시 n을 더해주면 stack overflow를 방지할 수 있다.
+
+
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string s, int n) {
+    string answer = "";
+    for(int i=0; i<s.length(); i++){
+        if(s[i]!=' ')
+        {
+            if(s[i]>='a' && s[i]<='z'){
+                if(s[i]+n>'z') s[i]-=26;
+                s[i]+=n;
+            }else if(s[i]>='A'&& s[i]<='Z'){
+                if(s[i]+n>'Z') s[i]-=26;
+                s[i]+=n;
+            }
+        }
+        answer=answer+s[i];
+    }
+    return answer;
+}
+```
 
