@@ -320,3 +320,125 @@ def solution(seoul):
     return "김서방은 "+str(seoul.index('Kim'))+"에 있다"
 ```
 
+
+
+## 평균 구하기
+
+### 코드
+
+```javascript
+function solution(arr) {
+    return arr.reduce((acc, current)=>acc+current)/arr.length;
+}
+```
+
+
+
+## 이상한 문자 만들기
+
+### 코드
+
+```python
+def solution(s):
+    answer='';
+    bar=0;
+    for i in range(0, len(s)) :
+        if s[i]==' ' : 
+            a=' '
+            bar=(i+1);
+        elif (i-bar)%2==0 : a=s[i].upper();
+        else : a=s[i].lower();
+        answer=answer+a;
+    return answer
+```
+
+
+
+## 문자열을 정수로 바꾸기
+
+### 코드
+
+```javascript
+function solution(s) {
+    return Number(s);
+}
+```
+
+
+
+## 문자열 다루기 기본
+
+### 코드
+
+```python
+def solution(s):
+    return s.isdecimal() and (len(s)==4 or len(s)==6)
+```
+
+
+
+## 문자열 내 p와 y의 개수
+
+### 코드
+
+```python
+def solution(s) :
+    return (s.count('p')+s.count('P')) == (s.count('y')+s.count('Y'))
+```
+
+
+
+## 소수 찾기
+
+### 코드
+
+```javascript
+function solution(n) {
+    var answer = 0;
+    var test=new Array(n+1);
+    for(let i=2; i<=Math.sqrt(n)+1; i++){
+        for(let j=i; j<=n; j+=i){
+            if(j!=i && j%i===0) test[j]=1;
+        }
+    }
+    
+    for(let i=2; i<=n; i++){
+        if(!test[i]) ++answer;
+    }
+    return answer;
+}
+```
+
+
+
+## 최대공약수와 최소공배수
+
+## 알고리즘
+
+1. \(A=Ga\>B=Gb\) 라고 한다면 a와 b는 서로소이므로 1이상의 공통의 약수가 없다. 따라서 a와 a-b도 공통인 약수가 없다.
+
+2. 이러한 원리를 이용하여 A와 B의 최대공약수는 A와 A-B의 최대공약수와 같다.
+3. 계속하여 큰 수에서 작은 수를 빼주다 보면\(A>B\)? \(A-B, B\):\(A, B-A\) 두 수가 같아진다. 서로소인 두 수를 가정하였을 때, 큰 수에서 작은 수 반복해서 빼주다 보면 두 수 모두 1이 된다.
+
+4. 두 수가 같아질 때가 두 수(a,b) 모두 1이되었을 때이므로 그때의 수는 Ga=G 가 된다.
+
+### 코드
+
+```javascript
+function solution(n, m) {
+    var answer = [];
+    var big=(n>=m)? n:m
+    var small=(n<m)? n:m
+    while(1){
+        if(big>small) big-=small;
+        else if(big<small) small-=big;
+        else break;
+    }
+    answer[0]=big;
+    answer[1]=answer[0]*(n/answer[0])*(m/answer[0]);
+    return answer;
+}
+```
+
+
+
