@@ -455,3 +455,176 @@ function solution(arr, divisor) {
 
 
 
+## 제일 작은 수 제거하기
+
+### 코드
+
+```python
+def solution(arr):
+    arr.remove(min(arr))
+    if len(arr)==0 : arr=[-1];
+    return arr
+```
+
+
+
+## 자릿수 더하기
+
+### 코드
+
+```javascript
+function solution(n)
+{
+    var answer = 0;
+    while(n){
+        answer+=n%10;
+        n=parseInt(n/10);
+    }
+    return answer;
+}
+```
+
+
+
+## 정수 내림차순으로 배치하기
+
+### 코드
+
+```javascript
+function solution(n) {
+    var answer = [];
+    while(n){
+        answer.push(n%10)
+        n=parseInt(n/10)
+    }
+    answer.sort((a,b)=>b-a);
+    return Number(answer.join(''));
+}
+```
+
+
+
+## 자연수 뒤집어 배열로 만들기
+
+### 코드
+
+```javascript
+function solution(n) {
+    var answer = [];
+    while(n){
+        answer.push(n%10);
+        n=parseInt(n/10);
+    }
+    return answer;
+}
+```
+
+
+
+## 콜라츠 추측
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int num) {
+    int answer = -1;
+    long n=num;
+    if(num==1) return 0;
+    for(int i=1; i<=500; i++){
+        if(n%2) n=n*3+1;
+        else n/=2;
+        if(n==1){
+            answer=i;
+            break;
+        }
+    }
+    return answer;
+}
+```
+
+
+
+## 정수 제곱근 판별
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+long long solution(long long n) {
+    long long answer = -1;
+    if(long(sqrt(n))*long(sqrt(n))==n) return (long(sqrt(n)+1)*long(sqrt(n)+1));
+    return answer;
+}
+```
+
+
+
+## 약수의 합
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n) {
+    int answer = 0;
+    for(int i=1; i<=n; i++){
+        if(n%i==0) answer+=i;
+    }
+    return answer;
+}
+```
+
+
+
+## 두 정수 사이의 합
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+long long solution(int a, int b) {
+    long long answer = 0;
+    if (a==b) return a;
+    for(long i=a; i<=b; i++) answer+=i;
+    for(long i=b; i<=a; i++) answer+=i;
+    return answer;
+}
+```
+
+
+
+## 짝수와 홀수
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(int num) {
+    string answer = "";
+    if(num%2) answer="Odd";
+    else answer="Even";
+    return answer;
+}
+```
