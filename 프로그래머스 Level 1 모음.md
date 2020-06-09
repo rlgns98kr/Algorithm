@@ -252,3 +252,49 @@ def solution(a, b):
     return answer[(5+s)%7]
 ```
 
+
+
+## 가운데 글자 가져오기
+
+### 코드
+
+```python
+def solution(s):
+    answer = ''
+    a=len(s);
+    if a%2==1 : answer= s[int(a/2)]
+    else : answer = s[int(a/2)-1]+s[int(a/2)]
+    return answer
+```
+
+
+
+## 문자열 내 마음대로 정렬하기
+
+### 함수
+
+1. sort함수의 비교함수는 -1이면 a가 앞으로 1이면 b가 앞으로
+
+### 코드
+
+```javascript
+var ni;
+
+function basic(a, b){
+    if(a[ni]<b[ni]) return -1;
+    else if(a[ni]>b[ni]) return 1;
+    else{
+        if(a<b) return -1;
+        else if(a>b) return 1;
+        return 0;
+    }
+}
+
+function solution(strings, n) {
+    var answer = [];
+    ni=n;
+    strings.sort(basic);
+    return strings;
+}
+```
+
