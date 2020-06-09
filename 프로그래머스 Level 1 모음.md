@@ -628,3 +628,349 @@ string solution(int num) {
     return answer;
 }
 ```
+
+
+
+# K번째 수
+
+### 알고리즘
+
+1. 배열의 깊은 복사를 한 후 정렬한다. k번째의 값을 참조하여 answer 배열에 넣어주면 답을 구할 수 있다.
+
+
+
+### 코드
+
+```javascript
+function compareNumbers(a, b) {
+  return a - b;
+}
+function solution(array, commands) {
+    var answer = [];
+    let imsi;
+    for(let i=0; i<commands.length; i++){
+        imsi=Object.assign([],array.slice(commands[i][0]-1,commands[i][1]));
+        imsi.sort(compareNumbers);
+        answer.push(imsi[commands[i][2]-1]);
+    }
+    return answer;
+}
+```
+
+
+
+# 같은 숫자는 싫어
+
+### 알고리즘
+
+1. arr[0]을 answer에 push한다.
+2. i 1\~arr.length 까지 반복하며 arr[i-1]!=arr[i]일 때(다른 숫자가 최초로 나올 때) arr[i]를 answer에 push한다.
+
+
+
+### 코드
+
+```javascript
+function solution(arr)
+{
+    var chk=[];
+    var answer = [];
+    
+    answer.push(arr[0]);
+    for(let i=1; i<arr.length; i++){
+        if(arr[i-1]!=arr[i]){
+            answer.push(arr[i]);
+        }
+    }
+    
+    return answer;
+}
+```
+
+
+
+# 다트 게임
+
+### 주의사항
+
+1. 숫자 중 10이 있을 때 따로 처리를 해주는 것이 좋다.
+
+
+
+### 코드
+
+```javascript
+function solution(dartResult) {
+    var answer = 0;
+    var stage=[];
+    var stagect=0;
+    for(let i=0; i<dartResult.length; i++){
+        if(dartResult[i]>='0'&& dartResult[i]<='9'){
+            if(dartResult[i]=='1' &&dartResult[i+1]=='0'){
+                stage[stagect++]=10;
+                i++;
+            }
+            else stage[stagect++]=dartResult[i]-'0';
+        }
+        else if(dartResult[i]=='D') stage[stagect-1]=Math.pow(stage[stagect-1], 2);
+        else if(dartResult[i]=='T') stage[stagect-1]=Math.pow(stage[stagect-1], 3);
+        else if(dartResult[i]=='*'){
+            stage[stagect-1]*=2;
+            if(stagect>1) stage[stagect-2]*=2;
+        }
+        else if(dartResult[i]=='#') stage[stagect-1]*=-1;
+    }
+    for(let i=0; i<stagect; i++) answer+=stage[i];
+    return answer;
+}
+```
+
+
+
+# 문자열 내림차순으로 배치하기
+
+### 알고리즘
+
+1. 버블정렬 가능
+
+
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string s) {
+    string answer = "";
+    char imsi;
+    for(int i=0; i<s.length(); i++)
+    {
+        for(int j=i+1; j<s.length(); j++){
+            if(s[i]<s[j]){
+                imsi=s[i];
+                s[i]=s[j];
+                s[j]=imsi;
+            }
+        }
+    }
+    return s;
+}
+```
+
+
+
+# 비밀지도
+
+### 알고리즘
+
+1. arr1과 arr2를 인덱스 별로 or 연산을 하여 저장한다.
+2. 저장된 배열 arr3를 이진수로 변환하여 적절한 문자열을 삽입한다.
+
+
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
+    vector<string> answer(n);
+    vector<int> arr3(n);
+    for(int i=0; i<n; i++){
+        arr3[i]=arr1[i]|arr2[i];
+        for(int j=0; j<n; j++){
+            if(arr3[i]%2==1) answer[i]='#'+answer[i];
+            else answer[i]=' '+answer[i];
+            arr3[i]/=2;
+        }
+    }
+    return answer;
+}
+```
+
+
+
+# 수박수박수박수박수박수?
+
+### 알고리즘
+
+1. i%2==0 이면 answer+='수'
+2. i%2==1 이면 answer+='박'
+
+
+
+### 코드
+
+```javascript
+function solution(n) {
+    var answer = '';
+    for(let i=0; i<n; i++){
+        if(i%2==0) answer+='수';
+        else answer+='박'
+    }
+    return answer;
+}
+```
+
+
+
+# 실패율
+
+### 알고리즘
+
+1. 각 stage별로 실패율을 구한다.(스테이지스의 길이만큼 돌면서 현재 스테이지보다 크거나같은 값과 같은 값을 구해서 나눈다.)
+2. 나누는 수(현재 스테이지보다 크거나 같은 값)가 0일 때에는 Infinity가 나오므로 이를 문제에서 정의한 대로 0으로 바꾸어 준다.
+
+
+
+### 코드
+
+```javascript
+function standard(a, b){
+    if(a.failure<b.failure) return 1;
+    else if(a.failure==b.failure) return a.number-b.number;
+    else return -1;
+}
+
+function solution(N, stages) {
+    var answer = [];
+    var stageNumber=[];
+    let s, f, imsi;
+    for(let i=1; i<=N; i++){
+        s=0;
+        f=0;
+        for(let j=0; j<=stages.length; j++){
+            if(i<=stages[j]) s++;
+            if(i==stages[j]) f++;
+        }
+        imsi=f/s;
+        if(s==0) imsi=0;
+        stageNumber.push({number:i, failure:imsi})
+    }
+    stageNumber.sort(standard);
+    
+    for(let i=0; i<N; i++) answer.push(stageNumber[i].number);
+    return answer;
+}
+```
+
+
+
+# 완주하지 못한 선수
+
+### 알고리즘
+
+1. participant의 값들을 json 객체 a의 key로 삼고 value를 1씩 증가시킨다. value는 그 이름(key)을 가진 참여한 선수들의 수이다.(동명이인)
+
+   ex) {"leo":1}
+
+2. completion의 값들을  json 객체 a의 key로 삼고 value를 1씩 감소시킨다.
+
+   ex){"leo":0}
+
+3. participant의 값들을 json 객체 a의 key로 접근하여 value가 0이 아닌 선수는 완주하지 못한 선수이다.
+
+
+
+### 코드
+
+```javascript
+function solution(participant, completion) {
+    var answer = '';
+    var parti={};
+    
+    for(var i=0; i<participant.length; i++){
+        if(!parti[participant[i]]) parti[participant[i]]=1;
+        else parti[participant[i]]++;
+    }
+    
+    for(var i=0; i<completion.length; i++) parti[completion[i]]--;
+    
+    for(var i =0; i<participant.length; i++)
+        if(parti[participant[i]]>0) answer=participant[i];
+    
+    return answer;
+}
+```
+
+
+
+# 크레인 인형뽑기 게임
+
+### 주의사항
+
+1. moves의 index는 1-base이고, board의 index는 0-base이기 때문에 이를 잘 주의하여 시뮬레이션을 한다.
+2. 바구니 a의 a[a.size()-2]와 a[a.size()-1]을 참조할 때 core dumped error가 발생할 수 있으므로 사이즈를 먼저 검사 후 참조한다.
+
+
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<vector<int>> board, vector<int> moves) {
+    int answer = 0;
+    vector<int> a;
+    for(int i=0; i<moves.size(); i++){
+        int index=moves[i]-1;
+        for(int j=0; j<board.size(); j++){
+            if(board[j][index]!=0){
+                a.push_back(board[j][index]);
+                board[j][index]=0;
+                
+                if(a.size()>=2 && a[a.size()-2]==a[a.size()-1]){
+                    printf("%d %d", a.size(), i);
+                    a.pop_back();
+                    a.pop_back();
+                    answer+=2;
+                }
+                break;
+            }
+            
+        }
+    }
+    return answer;
+}
+```
+
+
+
+# 하샤드 수
+
+### 알고리즘
+
+1. x를 10으로 나누면서 mod 연산을 하여 한자리 씩 추출하여 더한다.
+2. x/sum * sum == x 이면 하샤드 수 이다.
+
+
+
+### 코드
+
+```c++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+bool solution(int x) {
+    bool answer = true;
+    int sum=0, y=x;
+    while(y>0){
+        sum+=y%10;
+        y/=10;
+    }
+    if(((x/sum) * sum)==x) answer= true;
+    else answer= false;
+    return answer;
+}
+```
