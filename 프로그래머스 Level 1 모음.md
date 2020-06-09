@@ -442,3 +442,16 @@ function solution(n, m) {
 
 
 
+## 나누어 떨어지는 숫자 배열
+
+### 코드
+
+```javascript
+function solution(arr, divisor) {
+    let answer=arr.filter((data)=>data%divisor===0).sort((a,b)=>a-b);
+    return (answer[0])? answer:[-1]
+}
+```
+
+
+
