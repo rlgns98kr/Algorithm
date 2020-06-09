@@ -796,7 +796,7 @@ vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
 
 
 
-##수박수박수박수박수박수?
+## 수박수박수박수박수박수?
 
 ### 알고리즘
 
@@ -945,7 +945,7 @@ int solution(vector<vector<int>> board, vector<int> moves) {
 
 
 
-##하샤드 수
+## 하샤드 수
 
 ### 알고리즘
 
