@@ -631,7 +631,7 @@ string solution(int num) {
 
 
 
-# K번째 수
+##K번째 수
 
 ### 알고리즘
 
@@ -659,7 +659,7 @@ function solution(array, commands) {
 
 
 
-# 같은 숫자는 싫어
+## 같은 숫자는 싫어
 
 ### 알고리즘
 
@@ -689,7 +689,7 @@ function solution(arr)
 
 
 
-# 다트 게임
+## 다트 게임
 
 ### 주의사항
 
@@ -727,7 +727,7 @@ function solution(dartResult) {
 
 
 
-# 문자열 내림차순으로 배치하기
+## 문자열 내림차순으로 배치하기
 
 ### 알고리즘
 
@@ -762,7 +762,7 @@ string solution(string s) {
 
 
 
-# 비밀지도
+## 비밀지도
 
 ### 알고리즘
 
@@ -796,7 +796,7 @@ vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
 
 
 
-# 수박수박수박수박수박수?
+##수박수박수박수박수박수?
 
 ### 알고리즘
 
@@ -820,7 +820,7 @@ function solution(n) {
 
 
 
-# 실패율
+## 실패율
 
 ### 알고리즘
 
@@ -862,7 +862,7 @@ function solution(N, stages) {
 
 
 
-# 완주하지 못한 선수
+## 완주하지 못한 선수
 
 ### 알고리즘
 
@@ -901,7 +901,7 @@ function solution(participant, completion) {
 
 
 
-# 크레인 인형뽑기 게임
+## 크레인 인형뽑기 게임
 
 ### 주의사항
 
@@ -945,7 +945,7 @@ int solution(vector<vector<int>> board, vector<int> moves) {
 
 
 
-# 하샤드 수
+##하샤드 수
 
 ### 알고리즘
 
