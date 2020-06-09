@@ -631,7 +631,7 @@ string solution(int num) {
 
 
 
-##K번째 수
+## K번째 수
 
 ### 알고리즘
 
