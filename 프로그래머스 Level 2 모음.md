@@ -102,3 +102,29 @@ function solution(files) {
 }
 ```
 
+
+
+## 압축
+
+### 코드
+
+```javascript
+function solution(msg) {
+    var answer = [];
+    var alphabet= ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    var index=alphabet.split('');
+    for(var i=0; i<msg.length; i++){
+        var key=-1;
+        var sw=1;
+        while(sw!==-1 && i+key<msg.length){
+            key++;
+            sw=index.findIndex(e=>e===(msg.slice(i,i+key+1)))
+        }
+        answer.push(index.findIndex(e=>e===(msg.slice(i,i+key))))
+        index.push(msg.slice(i,i+key+1));
+        i=i+key-1;
+    }
+    return answer;
+}
+```
+
