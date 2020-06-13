@@ -128,3 +128,37 @@ function solution(msg) {
 }
 ```
 
+
+
+## 방금그곡
+
+### 코드
+
+```python
+from datetime import datetime
+def solution(m, musicinfos):
+    change = [['C#','D#','F#','G#','A#'],['c','d','f','g','a']]
+    answer="(None)"
+    mmax=-1;
+    for i in range(5) :
+        m=m.replace(change[0][i], change[1][i])
+    for i in musicinfos :
+        a=i.split(',');
+        for j in range(5) :
+            a[3]=a[3].replace(change[0][j], change[1][j])
+        
+        b=datetime.strptime(a[1],'%H:%M')-datetime.strptime(a[0],'%H:%M')
+        c=int(b.total_seconds()/60)
+        
+        jae=''
+        
+        for j in range(c) :
+            jae+=a[3][j%len(a[3])]
+            
+        if not jae.find(m) == -1 and mmax<c :
+            mmax=c
+            answer=a[2]
+            
+    return answer
+```
+
