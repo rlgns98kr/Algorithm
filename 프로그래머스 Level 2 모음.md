@@ -162,3 +162,52 @@ def solution(m, musicinfos):
     return answer
 ```
 
+
+
+## 후보키
+
+### 알고리즘
+
+1. column을 BFS로 탐색 하며 key로 삼을 수 있는 지 검사한다.
+2. key로 삼을 수 있는 것은 set 자료 구조를 이용하여 chkchk에 저장한다.
+3. chkchk에 저장되어 있는 것을 부분집합으로 하지 않는 key만을 후보키로 삼는다.
+
+### 코드
+
+```python
+import queue
+b=[]
+chkchk=[]
+
+def chk(a) :
+    global b
+    dic = {}
+    for i in range(len(a)) :
+        mun = ''
+        for j in range(len(b)) :
+            mun = mun + ',' + a[i][b[j]]
+        if mun in dic : return False
+        else : dic[mun]=1
+    return True
+
+def solution(relation):
+    answer = 0
+    global b, chkchk
+    q=queue.Queue()
+    
+    for i in range(len(relation[0])) : q.put([i])
+        
+    while not q.empty() :
+        b=q.get()
+        if chk(relation) :
+            t=0
+            for j in range(len(chkchk)) :
+                if chkchk[j]<=set(b) : t=1
+            if t==0 :
+                answer+=1
+                chkchk.append(set(b))
+        else :
+            for i in range(b[-1]+1, len(relation[0])) : q.put(b+[i])
+    return answer
+```
+
